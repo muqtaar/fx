@@ -1,0 +1,245 @@
+---
+genPolicy: "None"
+openAPISpec: "http://13.56.210.25/v2/api-docs"
+generators:
+- type: "no_params"
+  assertions:
+  - "@StatusCode == 200"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches: null
+  authors: ""
+- type: "sla"
+  assertions:
+  - "@StatusCode == 200 AND @ResponseTime < 500"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches:
+  - name: null
+    value: null
+    methods: null
+    denyRoles: null
+    allowRoles: null
+    pathPatterns: null
+    resourceSamples: null
+    queryParams: null
+    bodyProperties: null
+  authors: ""
+- type: "anonymous_invalid"
+  assertions:
+  - "@StatusCode == 401 OR @StatusCode == 403"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches:
+  - name: null
+    value: null
+    methods: null
+    denyRoles: null
+    allowRoles: null
+    pathPatterns: "Get:/api/v1/user-signup/**"
+    resourceSamples: null
+    queryParams: null
+    bodyProperties: null
+  authors: ""
+- type: "auth_invalid"
+  assertions:
+  - "@StatusCode == 401 OR @StatusCode == 403"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches:
+  - name: null
+    value: null
+    methods: null
+    denyRoles: null
+    allowRoles: null
+    pathPatterns: ""
+    resourceSamples: null
+    queryParams: null
+    bodyProperties: null
+  authors: ""
+- type: "auth_invalid_empty"
+  assertions:
+  - "@StatusCode == 401 OR @StatusCode == 403"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches:
+  - name: null
+    value: null
+    methods: null
+    denyRoles: null
+    allowRoles: null
+    pathPatterns: ""
+    resourceSamples: null
+    queryParams: null
+    bodyProperties: null
+  authors: "1.5"
+- type: "auth_invalid_sql"
+  assertions:
+  - "@StatusCode == 401 OR @StatusCode == 403"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches:
+  - name: null
+    value: null
+    methods: null
+    denyRoles: null
+    allowRoles: null
+    pathPatterns: ""
+    resourceSamples: null
+    queryParams: null
+    bodyProperties: null
+  authors: ""
+- type: "rbac"
+  assertions:
+  - "Disallowed:@StatusCode == 401 OR @StatusCode == 403"
+  - "Allowed:@StatusCode != 401 AND @StatusCode != 403"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches:
+  - name: "ROLE_ADMIN,ROLE_PM,ROLE_USER"
+    value: null
+    methods: null
+    denyRoles: null
+    allowRoles: null
+    pathPatterns: null
+    resourceSamples: "Get:/api/v1/orgs/:Allowed[ROLE_ADMIN]\nPost:/api/v1/accounts/:Allowed[ROLE_ADMIN,ROLE_PM]"
+    queryParams: null
+    bodyProperties: null
+  authors: ""
+- type: "DDOS"
+  assertions:
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches:
+  - name: "pageSize, page_size, maxResults, max_results"
+    value: null
+    methods: null
+    denyRoles: null
+    allowRoles: null
+    pathPatterns: null
+    resourceSamples: null
+    queryParams: null
+    bodyProperties: null
+  authors: ""
+- type: "XSS_Injection"
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches: null
+  authors: ""
+- type: "sql_injection_timebound"
+  assertions:
+  - "@ResponseTime < 7000 OR @ResponseTime > 10000"
+  - "@StatusCode != 404"
+  tags: null
+  severity: "Major"
+  database:
+    name: "MySQL"
+    version: "5.7"
+  inactive: true
+  matches: []
+  authors: ""
+- type: "log_Forging"
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches: null
+  authors: ""
+- type: "invalid_datatype"
+  assertions:
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches: null
+  authors: ""
+- type: "special_chars "
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches: null
+  authors: ""
+- type: "null_value"
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches: null
+  authors: ""
+- type: "empty_value"
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches: null
+  authors: ""
+- type: "negative_number"
+  assertions:
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches: null
+  authors: ""
+- type: "create"
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  tags: null
+  severity: "Major"
+  database: null
+  inactive: true
+  matches: null
+  authors: ""
