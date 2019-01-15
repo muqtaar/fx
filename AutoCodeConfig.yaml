@@ -2,19 +2,6 @@
 genPolicy: "None"
 openAPISpec: "http://13.56.210.25/v2/api-docs"
 generators:
-- type: "log_Forging"
-  assertions:
-  - "@StatusCode != 200"
-  - "@StatusCode != 401"
-  - "@StatusCode != 404"
-  - "@StatusCode != 500"
-  tags: null
-  severity: "Major"
-  database: null
-  inactive: true
-  matches: []
-  authors: ""
-  abacResources: null
 - type: "no_params"
   assertions:
   - "@StatusCode == 200"
